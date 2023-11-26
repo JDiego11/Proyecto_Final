@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/Resources">
+        <file>Morty_Sprites/Morty_Down_1.png</file>
+        <file>Morty_Sprites/Morty_Down_2.png</file>
+        <file>Morty_Sprites/Morty_Down_3.png</file>
+        <file>Morty_Sprites/Morty_Down_4.png</file>
+        <file>Morty_Sprites/Morty_Left_1.png</file>
+        <file>Morty_Sprites/Morty_Left_2.png</file>
+        <file>Morty_Sprites/Morty_Left_3.png</file>
+        <file>Morty_Sprites/Morty_Left_4.png</file>
+        <file>Morty_Sprites/Morty_Right_1.png</file>
+        <file>Morty_Sprites/Morty_Right_2.png</file>
+        <file>Morty_Sprites/Morty_Right_3.png</file>
+        <file>Morty_Sprites/Morty_Right_4.png</file>
+        <file>Morty_Sprites/Morty_Up_1.png</file>
+        <file>Morty_Sprites/Morty_Up_2.png</file>
+        <file>Morty_Sprites/Morty_Up_3.png</file>
+        <file>Morty_Sprites/Morty_Up_4.png</file>
+    </qresource>
+</RCC>

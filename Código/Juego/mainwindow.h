@@ -2,11 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QGraphicsScene>
-#include <QString>
+//#include <QGraphicsScene>
+//#include <QString>
 #include <QKeyEvent>
 
-#include "morty.h"
+#include "game.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,14 +20,15 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void keyPressEvent(QKeyEvent *);
+    void keyPressEvent(QKeyEvent *k);
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *Scene;
-    QString h;
+    //QGraphicsScene *Scene;
+    //QString h;
 
-    GameObject *Morty;
+    //GameObject *Morty;
+    Game *game;
 
 };
 #endif // MAINWINDOW_H

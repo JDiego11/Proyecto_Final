@@ -1,6 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsItem>
 #include "gameobject.h"
 #include "morty.h"
 
@@ -10,11 +13,12 @@
 class Game : public QGraphicsScene
 {
 public:
-    Game(int, int, int, int);
+    Game(int, int, int, int, QString);
     ~Game();
 
     void Morty_Next_Move(GameObject::Direction);
 
+    GameObject ***map;
     Morty *morty;
 
     friend class Morty;

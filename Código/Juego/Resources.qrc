@@ -16,5 +16,15 @@
         <file>Morty_Sprites/Morty_Up_2.png</file>
         <file>Morty_Sprites/Morty_Up_3.png</file>
         <file>Morty_Sprites/Morty_Up_4.png</file>
+        <file>Map_Object/Blank_Bath_4.png</file>
+        <file>Map_Object/Blank_Carpet_1.png</file>
+        <file>Map_Object/Blank_Floor_0.png</file>
+        <file>Map_Object/Blank_Grass_2.png</file>
+        <file>Map_Object/Blank_Office_5.png</file>
+        <file>Map_Object/Blank_Roof_3.png</file>
+        <file>Map_Object/Blank_Room_6.png</file>
+        <file>Map_Object/Mapa_1.txt</file>
+        <file>Map_Object/Mapa_2.txt</file>
+        <file>Map_Object/Wall.png</file>
     </qresource>
 </RCC>

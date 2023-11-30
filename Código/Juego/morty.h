@@ -15,28 +15,22 @@ class Morty : public GameObject
 
 public:
     Morty();        //Constructor
-    //~Morty();       //Destructor
-
+    void move();
     Game *game;
+
     friend class Game;
 
     ///Get Methods
-    //int getPosX() const;
-    //int getPosY() const;
     /*int getHealth() const;
     int getStrength() const;
-    int getResistance() const;
+    int getResistance() const;*/
 
     ///Set Methods
-    //void setPosX(int _X);
-    //void setPosY(int _Y);
-    void setHealth(int _Health);
+    /*void setHealth(int _Health);
     void setStrenght(int _Strength);
     void setResistance(int _Resistance);*/
 
 private:
-    //int posX;
-    //int posY;
     /*int Health;
     int Strength;
     int Resistance;*/

@@ -1,4 +1,5 @@
 #include "gameobject.h"
+#include "game.h"
 
 GameObject::GameObject(ObjectType t, QPixmap pixmap) : QGraphicsPixmapItem(pixmap)
 {

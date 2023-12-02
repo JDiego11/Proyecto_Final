@@ -1,4 +1,7 @@
 #include "morty.h"
+#include "game.h"
+
+#define W (GameObject::width)
 
 Morty::Morty() : GameObject(GameObject::Morty, QPixmap(":/Resources/Morty_Sprites/Morty_Down_1.png"))
 {
@@ -67,6 +70,50 @@ void Morty::Move_right()
     setPixmap(animation[Right][Anim_Frame]);   //Frame de la animación
     setY(static_cast<int>(x())+1);          //Mover objeto
 
+}
+
+void Morty::move() {
+    int Morty_x = static_cast<int>(x());
+    int Morty_y = static_cast<int>(y());
+    int _x = (Morty_x - game->mapX) / W;
+    int _y = (Morty_y - game->mapY) / W;
+    int x_aux = (Morty_x - game->mapX) % W;
+    int y_aux = (Morty_y - game->mapY) % W;
+    Direction next_direction = get_next_direction();
+
+    if (x_aux == 0) {
+        if (y_aux) {
+            posX = _x;
+            posY = _y;
+        }
+
+        switch (next_direction) {
+        case Up:
+            direction = next_direction;
+            break;
+        case Down:
+            direction = next_direction;
+            break;
+        case Left:
+            direction = next_direction;
+            break;
+        case Right:
+            direction = next_direction;
+            break;
+        }
+    }
+    else if (y_aux) {
+        switch (next_direction) {
+        case Left:
+            direction = next_direction;
+            break;
+        case Right:
+            direction = next_direction;
+            break;
+        default:
+            break;
+        }
+    }
 }
 /*
 void Morty::Take_Damage(int damage)

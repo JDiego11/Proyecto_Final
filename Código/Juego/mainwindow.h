@@ -5,6 +5,8 @@
 //#include <QGraphicsScene>
 //#include <QString>
 #include <QKeyEvent>
+#include <QBrush>
+#include <QColor>
 
 #include "game.h"
 
@@ -20,14 +22,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void keyPressEvent(QKeyEvent *k);
+    void keyPressEvent(QKeyEvent *k) override;
 
 private:
     Ui::MainWindow *ui;
-    //QGraphicsScene *Scene;
-    //QString h;
-
-    //GameObject *Morty;
     Game *game;
 
 };

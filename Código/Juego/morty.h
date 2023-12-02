@@ -9,6 +9,7 @@
 #include <QVector>
 
 #include "gameobject.h"
+//#include "game.h"
 
 class Morty : public GameObject
 {

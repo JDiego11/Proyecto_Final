@@ -14,7 +14,7 @@ class Game;
 class GameObject : public QGraphicsPixmapItem
 {
 public:
-    enum ObjectType {Morty, Wall, Floor, Roof, Grass, Bath, Room, Carpet, Office/*, Enemy, Heart, Shield, Sword*/};
+    enum ObjectType {Morty, Wall, Floor, Roof, Grass, Bath, Room, Carpet, Office, Blank/*, Enemy, Heart, Shield, Sword*/};
     enum Direction {Up = 0, Down = 1, Left = 2, Right = 3};
     static const int width = 50;        //Tamaño objetos en el juego
 
@@ -34,7 +34,7 @@ public:
 
     friend class Game;
 
-private:
+protected:
     int posX;
     int posY;
     Direction direction;

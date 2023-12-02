@@ -8,8 +8,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle(tr("Morty y los invasores"));
 
+    QColor Background_Color(207, 187, 137);
+    //QBrush Background_brush(Background_Color);
+
     ui->graphicsView->setStyleSheet("QGraphicsView {border: none;}");
-    ui->graphicsView->setBackgroundBrush(Qt::white);
+    ui->graphicsView->setBackgroundBrush(Background_Color);
     ui->graphicsView->setFocusPolicy(Qt::NoFocus);
 
     int map_height = 20, map_width = 30;

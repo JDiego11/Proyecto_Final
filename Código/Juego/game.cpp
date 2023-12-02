@@ -31,6 +31,7 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
     QPixmap BathPix(":/Resources/Map_Object/Blank_Bath_4.png");
     QPixmap OfficePix(":/Resources/Map_Object/Blank_Office_5.png");
     QPixmap RoomPix(":/Resources/Map_Object/Blank_Room_6.png");
+    QPixmap BlankPix;
 
     QFile mapfile(map_File);
     mapfile.open(QIODevice::ReadOnly|QIODevice::Text);
@@ -39,9 +40,9 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
 
     for (int i=0; i < m_Height; i++) {
         QByteArray line = mapfile.readLine();
-        for (int j=0; i < m_Width; j++) {
-            int aux_x = x + (j*W);
-            int aux_y = y + (i*W);
+        for (int j=0; j < m_Width; j++) {
+            int aux_x = x + (j * W);
+            int aux_y = y + (i * W);
             switch (line[j]) {
             case 'W':
                 map[i][j] = new GameObject(GameObject::Wall, WallPix);
@@ -91,6 +92,13 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 addItem(morty);
                 map[i][j] = morty;
                 break;
+            case '-':
+                map[i][j] = new GameObject(GameObject::Blank, BlankPix);
+                break;
+            }
+            if (map[i][j]) {
+                map[i][j]->posX = j;
+                map[i][j]->posY = i;
             }
         }
     }

@@ -104,6 +104,23 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
     }
 }
 
+void Game::start()
+{
+    Morty_timer = new QTimer(this);
+    connect(Morty_timer, SIGNAL(timeout()), this, SLOT(Morty_Movement));
+    Morty_timer->start(MORTY_SPEED);
+}
+
+void Game::stop()
+{
+    Morty_timer->stop();
+}
+
+void Game::Morty_Movement()
+{
+    morty->move();
+}
+
 void Game::Morty_Next_Move(GameObject::Direction d)
 {
     morty -> set_next_direction(d);

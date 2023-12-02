@@ -41,6 +41,8 @@ private:
     void Move_left();
     void Move_right();
 
+    bool Collision(int, int);
+
     /*void Take_Damage(int);
     void Get_object(int, int);*/
 

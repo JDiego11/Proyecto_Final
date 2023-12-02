@@ -5,7 +5,9 @@
 
 Morty::Morty() : GameObject(GameObject::Morty, QPixmap(":/Resources/Morty_Sprites/Morty_Down_1.png"))
 {
-    Anim_Frame = 0;
+    direction = Stop;
+    next_direction = Stop;
+    Anim_Frame = 2;
     ///Animación -> caminar arriba
     animation[Up].push_back(QPixmap(":/Resources/Morty_Sprites/Morty_Up_1.png"));
     animation[Up].push_back(QPixmap(":/Resources/Morty_Sprites/Morty_Up_2.png"));
@@ -36,7 +38,6 @@ void Morty::Move_up()
     }
     setPixmap(animation[Up][Anim_Frame]);   //Frame de la animación
     setY(static_cast<int>(y())-1);          //Mover objeto
-
 }
 
 void Morty::Move_down()
@@ -47,7 +48,6 @@ void Morty::Move_down()
     }
     setPixmap(animation[Down][Anim_Frame]);   //Frame de la animación
     setY(static_cast<int>(y())+1);          //Mover objeto
-
 }
 
 void Morty::Move_left()
@@ -58,7 +58,6 @@ void Morty::Move_left()
     }
     setPixmap(animation[Left][Anim_Frame]);   //Frame de la animación
     setY(static_cast<int>(x())-1);          //Mover objeto
-
 }
 
 void Morty::Move_right()
@@ -69,10 +68,25 @@ void Morty::Move_right()
     }
     setPixmap(animation[Right][Anim_Frame]);   //Frame de la animación
     setY(static_cast<int>(x())+1);          //Mover objeto
-
 }
 
-void Morty::move() {
+bool Morty::Collision(int i, int j)
+{
+    if (i < 0 || j > 0) {
+        return false;
+    }
+    if (i >= game->map_height || j >= game->map_width) {
+        return false;
+    }
+    switch (game->map[i][j]->get_Type()) {
+    case Wall:
+    default:
+        return true;
+    }
+}
+
+void Morty::move()
+{
     int Morty_x = static_cast<int>(x());
     int Morty_y = static_cast<int>(y());
     int _x = (Morty_x - game->mapX) / W;
@@ -88,31 +102,86 @@ void Morty::move() {
         }
 
         switch (next_direction) {
-        case Up:
+        case Stop:
             direction = next_direction;
+            break;
+        case Up:
+            if (Collision(posY - 1, posX)) {
+                direction = next_direction;
+            }
             break;
         case Down:
-            direction = next_direction;
+            if (Collision(posY + 1, posX)) {
+                direction = next_direction;
+            }
             break;
         case Left:
-            direction = next_direction;
+            if (y_aux && Collision(posY, posX - 1)) {
+                direction = next_direction;
+            }
             break;
         case Right:
-            direction = next_direction;
+            if (y_aux && Collision(posY, posX + 1)) {
+                direction = next_direction;
+            }
             break;
         }
     }
     else if (y_aux) {
         switch (next_direction) {
-        case Left:
+        case Stop:
             direction = next_direction;
             break;
+        case Left:
+            if (Collision(posY, posX - 1)) {
+                direction = next_direction;
+            }
+            break;
         case Right:
-            direction = next_direction;
+            if (Collision(posY, posX + 1)) {
+                direction = next_direction;
+            }
             break;
         default:
             break;
         }
+    }
+
+    switch (direction) {
+    case Stop:
+        break;
+    case Up:
+        if (y_aux == 0 && !Collision(posY - 1, posX)) {
+            direction = Stop;
+            next_direction = Stop;
+        } else {
+            Move_up();
+        }
+        break;
+    case Down:
+        if (y_aux == 0 && !Collision(posY + 1, posX)) {
+            direction = Stop;
+            next_direction = Stop;
+        } else {
+            Move_down();
+        }
+        break;
+    case Left:
+        if (y_aux == 0 && !Collision(posY, posX - 1)) {
+            direction = Stop;
+            next_direction = Stop;
+        } else {
+            Move_left();
+        }
+        break;
+    case Right:
+        if (y_aux == 0 && !Collision(posY, posX + 1)) {
+            direction = Stop;
+            next_direction = Stop;
+        } else {
+            Move_right();
+        }
+        break;
     }
 }
 /*

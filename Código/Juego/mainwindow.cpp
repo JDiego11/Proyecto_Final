@@ -40,8 +40,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::keyPressEvent(QKeyEvent *k)
-{
+void MainWindow::keyPressEvent(QKeyEvent *k) {
     switch (k->key()) {
     case Qt::Key_W:
         game->Morty_Next_Move(GameObject::Up);

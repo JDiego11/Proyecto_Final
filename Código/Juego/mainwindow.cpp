@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,7 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->graphicsView->setStyleSheet("QGraphicsView {border: none;}");
     ui->graphicsView->setBackgroundBrush(Background_Color);
-    ui->graphicsView->setFocusPolicy(Qt::NoFocus);
+    ui->graphicsView->setFocusPolicy(Qt::StrongFocus);
+    //qDebug() << "Focus Policy: " << ui->graphicsView->focusPolicy();
 
     int map_height = 20, map_width = 30;
     int x = 10, y = 10;
@@ -21,8 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     int h = (map_height * GameObject::width);
 
     ui->graphicsView->setGeometry(x, y, w, h);
-    game = new Game(x, y, map_width, map_height, ":/Resources/Map_Object/Mapa_1.txt");
+    game = new Game(x, y, map_width, map_height, ":/Resources/Map_Object/Mapa_0.txt");
     ui->graphicsView->setScene(game);
+    game->start();
 
     //Morty = new GameObject(GameObject::Morty, QPixmap(":/Resources/Morty_Sprites/Morty_Down_1.png"));
     //Morty -> setPos((ui->graphicsView->width()/2)-50, (ui->graphicsView->height()/2)-50);
@@ -41,6 +44,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *k) {
+    //qDebug() << "Key Pressed: " << k->key();
     switch (k->key()) {
     case Qt::Key_W:
         game->Morty_Next_Move(GameObject::Up);

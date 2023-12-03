@@ -26,6 +26,7 @@ public:
 
     GameObject ***map;
     Morty *morty;
+    Status status;
 
     friend class Morty;
 

@@ -1,13 +1,15 @@
 #include "morty.h"
 #include "game.h"
 
+#include <QDebug>
+
 #define W (GameObject::width)
 
 Morty::Morty() : GameObject(GameObject::Morty, QPixmap(":/Resources/Morty_Sprites/Morty_Down_1.png"))
 {
     direction = Stop;
     next_direction = Stop;
-    Anim_Frame = 2;
+    Anim_Frame = 0;
     ///Animación -> caminar arriba
     animation[Up].push_back(QPixmap(":/Resources/Morty_Sprites/Morty_Up_1.png"));
     animation[Up].push_back(QPixmap(":/Resources/Morty_Sprites/Morty_Up_2.png"));
@@ -87,6 +89,7 @@ bool Morty::Collision(int i, int j)
 
 void Morty::move()
 {
+    //qDebug() << "Morty Move";
     int Morty_x = static_cast<int>(x());
     int Morty_y = static_cast<int>(y());
     int _x = (Morty_x - game->mapX) / W;

@@ -1,5 +1,7 @@
-#include "game.h"
+﻿#include "game.h"
 #include <QFile>
+
+#include <QDebug>
 
 #define W (GameObject::width)
 
@@ -8,6 +10,7 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
 {
     mapX = x;
     mapY = y;
+    status = Playing;
 
     //Punteros para el mapa
     map_size = m_Width * m_Height;
@@ -24,13 +27,13 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
 
     //Carga de Gráficos
     QPixmap WallPix(":/Resources/Map_Object/Wall.png");
-    QPixmap FloorPix(":/Resources/Map_Object/Blank_Floor_0.png");
+    /*QPixmap FloorPix(":/Resources/Map_Object/Blank_Floor_0.png");
     QPixmap CarpetPix(":/Resources/Map_Object/Blank_Carpet_1.png");
     QPixmap GrassPix(":/Resources/Map_Object/Blank_Grass_2.png");
     QPixmap RoofPix(":/Resources/Map_Object/Blank_Roof_3.png");
     QPixmap BathPix(":/Resources/Map_Object/Blank_Bath_4.png");
     QPixmap OfficePix(":/Resources/Map_Object/Blank_Office_5.png");
-    QPixmap RoomPix(":/Resources/Map_Object/Blank_Room_6.png");
+    QPixmap RoomPix(":/Resources/Map_Object/Blank_Room_6.png");*/
     QPixmap BlankPix;
 
     QFile mapfile(map_File);
@@ -49,7 +52,7 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 map[i][j]->setPos(aux_x, aux_y);
                 addItem(map[i][j]);
                 break;
-            case '0':
+            /*case '0':
                 map[i][j] = new GameObject(GameObject::Floor, FloorPix);
                 map[i][j]->setPos(aux_x, aux_y);
                 addItem(map[i][j]);
@@ -83,7 +86,7 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 map[i][j] = new GameObject(GameObject::Room, RoomPix);
                 map[i][j]->setPos(aux_x, aux_y);
                 addItem(map[i][j]);
-                break;
+                break;*/
             case 'M':
                 morty = new Morty;
                 morty->game = this;
@@ -106,8 +109,9 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
 
 void Game::start()
 {
+    qDebug() << "Game start";
     Morty_timer = new QTimer(this);
-    connect(Morty_timer, SIGNAL(timeout()), this, SLOT(Morty_Movement));
+    connect(Morty_timer, SIGNAL(timeout()), this , SLOT(Morty_Movement()));
     Morty_timer->start(MORTY_SPEED);
 }
 
@@ -118,11 +122,16 @@ void Game::stop()
 
 void Game::Morty_Movement()
 {
+    qDebug() << "Morty_Movement called";
     morty->move();
+    if (status == Win) {
+        stop();
+    }
 }
 
 void Game::Morty_Next_Move(GameObject::Direction d)
 {
+    //qDebug() << "Morty Next Move: " << d;
     morty -> set_next_direction(d);
 }
 
@@ -134,4 +143,6 @@ Game::~Game() {
         delete[] map[i];
     }
     delete[] map;
+
+    delete Morty_timer;
 }

@@ -27,5 +27,14 @@
         <file>Map_Object/Mapa_0.txt</file>
         <file>Map_Object/Mapa_1.txt</file>
         <file>Map_Object/Mapa_2.txt</file>
+        <file>Map_Object/Portal.png</file>
+        <file>Enemy&amp;Objects/Enemy_LeftDown_1.png</file>
+        <file>Enemy&amp;Objects/Enemy_LeftDown_2.png</file>
+        <file>Enemy&amp;Objects/Enemy_LeftDown_3.png</file>
+        <file>Enemy&amp;Objects/Enemy_LeftDown_4.png</file>
+        <file>Enemy&amp;Objects/Enemy_RightUp_1.png</file>
+        <file>Enemy&amp;Objects/Enemy_RightUp_2.png</file>
+        <file>Enemy&amp;Objects/Enemy_RightUp_3.png</file>
+        <file>Enemy&amp;Objects/Enemy_RightUp_4.png</file>
     </qresource>
 </RCC>

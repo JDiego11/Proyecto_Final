@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->graphicsView->setStyleSheet("QGraphicsView {border: none;}");
     ui->graphicsView->setBackgroundBrush(Background_Color);
-    ui->graphicsView->setFocusPolicy(Qt::StrongFocus);
+    ui->graphicsView->setFocusPolicy(Qt::NoFocus);
     //qDebug() << "Focus Policy: " << ui->graphicsView->focusPolicy();
 
     int map_height = 20, map_width = 30;
@@ -44,7 +44,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *k) {
-    //qDebug() << "Key Pressed: " << k->key();
+    qDebug() << "Key Pressed: " << k->key();
     switch (k->key()) {
     case Qt::Key_W:
         game->Morty_Next_Move(GameObject::Up);

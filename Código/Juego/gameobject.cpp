@@ -1,6 +1,8 @@
 #include "gameobject.h"
 #include "game.h"
 
+#include <QDebug>
+
 GameObject::GameObject(ObjectType t, QPixmap pixmap) : QGraphicsPixmapItem(pixmap)
 {
     type = t;
@@ -53,5 +55,6 @@ void GameObject::set_direction(Direction dir)
 
 void GameObject::set_next_direction(Direction dir)
 {
+    qDebug() << "Morty Next directio: " << dir;
     next_direction = dir;
 }

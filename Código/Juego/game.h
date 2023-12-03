@@ -11,20 +11,22 @@
 
 #define ENEMY_RELEASE       2500         //Tiempo en que sale cada enemigo
 #define ITEM_SPAWN          7500         //Tiempo en que aparecen los items
-#define MORTY_SPEED         10
+#define MORTY_SPEED         10          //Velocidad de Morty
 
-class Game : public QGraphicsScene
+class Game : public QGraphicsScene//, public QObject
 {
+    Q_OBJECT
+
 public:
     enum Status {Playing, Win, Lose};
     Game(int, int, int, int, QString);
     ~Game();
     void start();
     void stop();
-
     void Morty_Next_Move(GameObject::Direction);
 
     GameObject ***map;
+    GameObject *portal;
     Morty *morty;
     Status status;
 

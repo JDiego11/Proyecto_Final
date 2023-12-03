@@ -27,6 +27,7 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
 
     //Carga de Gráficos
     QPixmap WallPix(":/Resources/Map_Object/Wall.png");
+    QPixmap PortalPix(":/Resources/Map_Object/Portal.png");
     /*QPixmap FloorPix(":/Resources/Map_Object/Blank_Floor_0.png");
     QPixmap CarpetPix(":/Resources/Map_Object/Blank_Carpet_1.png");
     QPixmap GrassPix(":/Resources/Map_Object/Blank_Grass_2.png");
@@ -95,6 +96,13 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 addItem(morty);
                 map[i][j] = morty;
                 break;
+            case 'P':
+                portal = new GameObject(GameObject::Portal, PortalPix);
+                portal->posX = j;
+                portal->posY = i;
+                portal->setPos(aux_x, aux_y);
+                addItem(portal);
+                map[i][j] = portal;
             case '-':
                 map[i][j] = new GameObject(GameObject::Blank, BlankPix);
                 break;
@@ -122,7 +130,7 @@ void Game::stop()
 
 void Game::Morty_Movement()
 {
-    qDebug() << "Morty_Movement called";
+    qDebug() << "Morty Movement Timer";
     morty->move();
     if (status == Win) {
         stop();
@@ -131,7 +139,7 @@ void Game::Morty_Movement()
 
 void Game::Morty_Next_Move(GameObject::Direction d)
 {
-    //qDebug() << "Morty Next Move: " << d;
+    qDebug() << "Morty Next Move: " << d;
     morty -> set_next_direction(d);
 }
 

@@ -39,7 +39,8 @@ void Morty::Move_up()
         Anim_Frame = 0;
     }
     setPixmap(animation[Up][Anim_Frame]);   //Frame de la animación
-    setY(static_cast<int>(y())-1);          //Mover objeto
+    //setY(static_cast<int>(y())-1);          //Mover objeto
+    setPos(x(), y() - 2);
 }
 
 void Morty::Move_down()
@@ -49,7 +50,7 @@ void Morty::Move_down()
         Anim_Frame = 0;
     }
     setPixmap(animation[Down][Anim_Frame]);   //Frame de la animación
-    setY(static_cast<int>(y())+1);          //Mover objeto
+    setY(static_cast<int>(y())+2);          //Mover objeto
 }
 
 void Morty::Move_left()
@@ -59,7 +60,8 @@ void Morty::Move_left()
         Anim_Frame = 0;
     }
     setPixmap(animation[Left][Anim_Frame]);   //Frame de la animación
-    setY(static_cast<int>(x())-1);          //Mover objeto
+    //setY(static_cast<int>(x())-1);          //Mover objeto
+    setPos(x() - 2, y());
 }
 
 void Morty::Move_right()
@@ -69,12 +71,13 @@ void Morty::Move_right()
         Anim_Frame = 0;
     }
     setPixmap(animation[Right][Anim_Frame]);   //Frame de la animación
-    setY(static_cast<int>(x())+1);          //Mover objeto
+    //setY(static_cast<int>(x())+1);          //Mover objeto
+    setPos(x() + 2, y());
 }
 
 bool Morty::Collision(int i, int j)
 {
-    if (i < 0 || j > 0) {
+    if (i < 0 || j < 0) {
         return false;
     }
     if (i >= game->map_height || j >= game->map_width) {
@@ -82,6 +85,8 @@ bool Morty::Collision(int i, int j)
     }
     switch (game->map[i][j]->get_Type()) {
     case Wall:
+    case Portal:
+        return false;
     default:
         return true;
     }
@@ -89,7 +94,6 @@ bool Morty::Collision(int i, int j)
 
 void Morty::move()
 {
-    //qDebug() << "Morty Move";
     int Morty_x = static_cast<int>(x());
     int Morty_y = static_cast<int>(y());
     int _x = (Morty_x - game->mapX) / W;
@@ -99,7 +103,7 @@ void Morty::move()
     Direction next_direction = get_next_direction();
 
     if (x_aux == 0) {
-        if (y_aux) {
+        if (y_aux == 0) {
             posX = _x;
             posY = _y;
         }
@@ -119,18 +123,17 @@ void Morty::move()
             }
             break;
         case Left:
-            if (y_aux && Collision(posY, posX - 1)) {
+            if (y_aux == 0 && Collision(posY, posX - 1)) {
                 direction = next_direction;
             }
             break;
         case Right:
-            if (y_aux && Collision(posY, posX + 1)) {
+            if (y_aux == 0 && Collision(posY, posX + 1)) {
                 direction = next_direction;
             }
             break;
         }
-    }
-    else if (y_aux) {
+    } else if (y_aux == 0) {
         switch (next_direction) {
         case Stop:
             direction = next_direction;
@@ -170,7 +173,7 @@ void Morty::move()
         }
         break;
     case Left:
-        if (y_aux == 0 && !Collision(posY, posX - 1)) {
+        if (x_aux == 0 && !Collision(posY, posX - 1)) {
             direction = Stop;
             next_direction = Stop;
         } else {
@@ -178,7 +181,7 @@ void Morty::move()
         }
         break;
     case Right:
-        if (y_aux == 0 && !Collision(posY, posX + 1)) {
+        if (x_aux == 0 && !Collision(posY, posX + 1)) {
             direction = Stop;
             next_direction = Stop;
         } else {
@@ -187,6 +190,7 @@ void Morty::move()
         break;
     }
 }
+
 /*
 void Morty::Take_Damage(int damage)
 {

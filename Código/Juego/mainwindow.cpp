@@ -26,16 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
     game = new Game(x, y, map_width, map_height, ":/Resources/Map_Object/Mapa_0.txt");
     ui->graphicsView->setScene(game);
     game->start();
-
-    //Morty = new GameObject(GameObject::Morty, QPixmap(":/Resources/Morty_Sprites/Morty_Down_1.png"));
-    //Morty -> setPos((ui->graphicsView->width()/2)-50, (ui->graphicsView->height()/2)-50);
-    //Scene = new QGraphicsScene;
-
-    //Scene -> setSceneRect(0,0,ui->graphicsView->width()-5, ui->graphicsView->height()-5);
-    //Scene -> addItem(Morty);    //Agregar al morty
-    //Scene -> removeItem(Morty); // ELiminar al morty
-    //ui -> graphicsView -> setScene(Scene);
-    //game = new Game(50, 50);
 }
 
 MainWindow::~MainWindow()
@@ -44,7 +34,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *k) {
-    qDebug() << "Key Pressed: " << k->key();
+    //qDebug() << "Key Pressed: " << k->key();
     switch (k->key()) {
     case Qt::Key_W:
         game->Morty_Next_Move(GameObject::Up);

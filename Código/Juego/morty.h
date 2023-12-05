@@ -9,7 +9,6 @@
 #include <QVector>
 
 #include "gameobject.h"
-//#include "game.h"
 
 class Morty : public GameObject
 {
@@ -21,30 +20,13 @@ public:
 
     friend class Game;
 
-    ///Get Methods
-    /*int getHealth() const;
-    int getStrength() const;
-    int getResistance() const;*/
-
-    ///Set Methods
-    /*void setHealth(int _Health);
-    void setStrenght(int _Strength);
-    void setResistance(int _Resistance);*/
-
 private:
-    /*int Health;
-    int Strength;
-    int Resistance;*/
-
     void Move_up();
     void Move_down();
     void Move_left();
     void Move_right();
-
     bool Collision(int, int);
-
-    /*void Take_Damage(int);
-    void Get_object(int, int);*/
+    void Collect_Bottle(int, int);
 
     QVector<QPixmap> animation[4];
     int Anim_Frame;

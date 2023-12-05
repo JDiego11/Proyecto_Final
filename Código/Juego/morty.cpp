@@ -50,7 +50,8 @@ void Morty::Move_down()
         Anim_Frame = 0;
     }
     setPixmap(animation[Down][Anim_Frame]);   //Frame de la animación
-    setY(static_cast<int>(y())+2);          //Mover objeto
+    //setY(static_cast<int>(y())+2);          //Mover objeto
+    setPos(x(), y() + 2);
 }
 
 void Morty::Move_left()
@@ -92,6 +93,26 @@ bool Morty::Collision(int i, int j)
     }
 }
 
+void Morty::Collect_Bottle(int _y, int _x)
+{
+    qDebug() << "Entró a la func";
+    GameObject *bot = game->map[_y][_x];
+    switch (bot->get_Type()) {
+    case Bottle:
+        game->score += bot->get_Bottle_Score();
+        game->Bottle_Num--;
+        break;
+    default:
+        break;
+    }
+
+    QPixmap BlankPix;
+    game->map[posY][posX] = new GameObject(GameObject::Blank, BlankPix);
+    game->map[_y][_x] = this;
+    delete bot;
+    qDebug() << "Sale de la func";
+}
+
 void Morty::move()
 {
     int Morty_x = static_cast<int>(x());
@@ -104,8 +125,16 @@ void Morty::move()
 
     if (x_aux == 0) {
         if (y_aux == 0) {
+
+            Collect_Bottle(_y, _x);
+
             posX = _x;
             posY = _y;
+
+            if (game->Bottle_Num == 0) {
+                game->status = Game::Win;
+                return;
+            }
         }
 
         switch (next_direction) {

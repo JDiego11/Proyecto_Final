@@ -1,0 +1,10 @@
+debug/Chase_Morty.o
+debug/enemy.o
+debug/game.o
+debug/gameobject.o
+debug/main.o
+debug/mainwindow.o
+debug/morty.o
+debug/qrc_Resources.o
+debug/moc_game.o
+debug/moc_mainwindow.o

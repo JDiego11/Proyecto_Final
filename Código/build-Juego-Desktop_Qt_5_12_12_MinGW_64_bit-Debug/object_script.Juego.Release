@@ -1,0 +1,10 @@
+release/Chase_Morty.o
+release/enemy.o
+release/game.o
+release/gameobject.o
+release/main.o
+release/mainwindow.o
+release/morty.o
+release/qrc_Resources.o
+release/moc_game.o
+release/moc_mainwindow.o

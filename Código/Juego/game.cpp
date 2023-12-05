@@ -5,6 +5,8 @@
 
 #define W (GameObject::width)
 
+int ENEMY_RELEASE_TIME[] = {0, 200/*, 400, 600, 800, 1000*/};
+
 Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
     : QGraphicsScene(x, y, W * m_Width, W * m_Height)
 {
@@ -25,16 +27,13 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
         }
     }
 
+    Bottle_Num = collected_bottles = 0;
+    int Enemy_i = 0;
+    //int cont_Enemy = 0;
     //Carga de Gráficos
     QPixmap WallPix(":/Resources/Map_Object/Wall.png");
     QPixmap PortalPix(":/Resources/Map_Object/Portal.png");
-    /*QPixmap FloorPix(":/Resources/Map_Object/Blank_Floor_0.png");
-    QPixmap CarpetPix(":/Resources/Map_Object/Blank_Carpet_1.png");
-    QPixmap GrassPix(":/Resources/Map_Object/Blank_Grass_2.png");
-    QPixmap RoofPix(":/Resources/Map_Object/Blank_Roof_3.png");
-    QPixmap BathPix(":/Resources/Map_Object/Blank_Bath_4.png");
-    QPixmap OfficePix(":/Resources/Map_Object/Blank_Office_5.png");
-    QPixmap RoomPix(":/Resources/Map_Object/Blank_Room_6.png");*/
+    QPixmap BottlePix(":/Resources/Enemy&Objects/Bottle_1.png");
     QPixmap BlankPix;
 
     QFile mapfile(map_File);
@@ -53,41 +52,31 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 map[i][j]->setPos(aux_x, aux_y);
                 addItem(map[i][j]);
                 break;
-            /*case '0':
-                map[i][j] = new GameObject(GameObject::Floor, FloorPix);
+            case 'B':
+                map[i][j] = new GameObject(GameObject::Bottle, BottlePix);
+                map[i][j]->set_Bottle_Score(BOTTLE_SCORE);
                 map[i][j]->setPos(aux_x, aux_y);
                 addItem(map[i][j]);
+                Bottle_Num++;
                 break;
-            case '1':
-                map[i][j] = new GameObject(GameObject::Carpet, CarpetPix);
-                map[i][j]->setPos(aux_x, aux_y);
-                addItem(map[i][j]);
+            case 'E':
+                /*if (cont_Enemy == 0 || cont_Enemy == 5) {
+                    Enemy_i = 1;
+                } else {
+                    Enemy_i = 0;
+                }*/
+                map[i][j] = new GameObject(GameObject::Blank, BlankPix);
+                enemy[Enemy_i] = new Enemy(Enemy_i);
+                enemy[Enemy_i]->game = this;
+                enemy[Enemy_i]->setZValue(2);
+                enemy[Enemy_i]->Release_Time = ENEMY_RELEASE_TIME[Enemy_i];
+                enemy[Enemy_i]->posX = j;
+                enemy[Enemy_i]->posY = i;
+                enemy[Enemy_i]->setPos(aux_x, aux_y);
+                addItem(enemy[Enemy_i]);
+                //cont_Enemy++;
+                Enemy_i++;
                 break;
-            case '2':
-                map[i][j] = new GameObject(GameObject::Grass, GrassPix);
-                map[i][j]->setPos(aux_x, aux_y);
-                addItem(map[i][j]);
-                break;
-            case '3':
-                map[i][j] = new GameObject(GameObject::Roof, RoofPix);
-                map[i][j]->setPos(aux_x, aux_y);
-                addItem(map[i][j]);
-                break;
-            case '4':
-                map[i][j] = new GameObject(GameObject::Bath, BathPix);
-                map[i][j]->setPos(aux_x, aux_y);
-                addItem(map[i][j]);
-                break;
-            case '5':
-                map[i][j] = new GameObject(GameObject::Office, OfficePix);
-                map[i][j]->setPos(aux_x, aux_y);
-                addItem(map[i][j]);
-                break;
-            case '6':
-                map[i][j] = new GameObject(GameObject::Room, RoomPix);
-                map[i][j]->setPos(aux_x, aux_y);
-                addItem(map[i][j]);
-                break;*/
             case 'M':
                 morty = new Morty;
                 morty->game = this;
@@ -103,6 +92,7 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 portal->setPos(aux_x, aux_y);
                 addItem(portal);
                 map[i][j] = portal;
+                break;
             case '-':
                 map[i][j] = new GameObject(GameObject::Blank, BlankPix);
                 break;
@@ -113,44 +103,72 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
             }
         }
     }
+
+    enemy[Enemy::Normal1]->Chase = &Chase2;
+    enemy[Enemy::Big1]->Chase = &Chase1;
 }
 
 void Game::start()
 {
-    qDebug() << "Game start";
     Morty_timer = new QTimer(this);
     connect(Morty_timer, SIGNAL(timeout()), this , SLOT(Morty_Movement()));
     Morty_timer->start(MORTY_SPEED);
+
+    /*for (int i = 0; i < Enemy::EnemyNum; i++) {
+        Enemy_Timer[i] = new QTimer(this);
+        connect(Enemy_Timer[i], &QTimer::timeout, [=](){Enemy_Movement(i);});
+        Enemy_Timer[i]->start(ENEMY_SPEED);
+    }*/
 }
 
 void Game::stop()
 {
     Morty_timer->stop();
+    for (int i = 0; i < Enemy::EnemyNum; i++) {
+        Enemy_Timer[i]->stop();
+    }
 }
 
 void Game::Morty_Movement()
 {
-    qDebug() << "Morty Movement Timer";
     morty->move();
     if (status == Win) {
         stop();
     }
 }
 
+void Game::Enemy_Movement(int enemy_id)
+{
+    enemy[enemy_id]->move();
+    if (status == Lose) {
+        stop();
+    }
+}
+
 void Game::Morty_Next_Move(GameObject::Direction d)
 {
-    qDebug() << "Morty Next Move: " << d;
+    //qDebug() << "Morty Next Move: " << d;
     morty -> set_next_direction(d);
+}
+
+int Game::get_score()
+{
+    return score;
 }
 
 Game::~Game() {
     for (int i=0; i < map_height; i++) {
         for (int j=0; j < map_width; j++) {
-            if (map[i][j] != nullptr) delete map[i][j];
+            if (map[i][j] != nullptr) {
+                delete map[i][j];
+            }
         }
         delete[] map[i];
     }
     delete[] map;
 
     delete Morty_timer;
+    for (int i=0; i < Enemy::EnemyNum; i++) {
+        delete Enemy_Timer[i];
+    }
 }

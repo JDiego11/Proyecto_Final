@@ -8,11 +8,13 @@
 class Enemy : public GameObject
 {
 public:
-    const static int EnemyNum = 6;
+    enum EnemyType {Big1 = 0, Normal1 = 1/*, Normal2 = 2, Normal3 = 3, Normal4 = 4, Big2 = 5*/};
+    const static int EnemyNum = 2;
     Game *game;
 
-    Enemy();
+    Enemy(int);
     void move();
+    EnemyType get_EnemyType();
 
     friend class Game;
     friend class Morty;
@@ -25,12 +27,18 @@ private:
 
     void Random_Direction();
     void Leave_Portal();
-    bool Collision();
+    void Look4Morty();
+    QPair<int, int> (*Chase)(Enemy*);
+    bool Collision(int, int);
 
+    EnemyType enemyType;
     QVector<QPixmap> animation[4];
     int Animation_Frame;
     int Release_Time;
     bool is_released;
 };
+
+QPair<int, int> Chase1(Enemy*);
+QPair<int, int> Chase2(Enemy*);
 
 #endif // ENEMY_H

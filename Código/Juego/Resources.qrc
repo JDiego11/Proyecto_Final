@@ -36,5 +36,14 @@
         <file>Enemy&amp;Objects/Enemy_RightUp_2.png</file>
         <file>Enemy&amp;Objects/Enemy_RightUp_3.png</file>
         <file>Enemy&amp;Objects/Enemy_RightUp_4.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_RD_1.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_RD_2.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_RD_3.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_RD_4.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_UL_1.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_UL_2.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_UL_3.png</file>
+        <file>Enemy&amp;Objects/BigEnemy_UL_4.png</file>
+        <file>Enemy&amp;Objects/Bottle_1.png</file>
     </qresource>
 </RCC>

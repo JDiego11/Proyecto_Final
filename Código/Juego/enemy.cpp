@@ -15,6 +15,24 @@ Enemy::Enemy(int et) : GameObject(
     direction = Direction(QRandomGenerator::global()->generate() % 4);
 
     switch (enemyType) {
+    case Big1:
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_1.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_2.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_3.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_4.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_1.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_2.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_3.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_4.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_1.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_2.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_3.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_4.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_1.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_2.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_3.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_RD_4.png"));
+        break;
     case Normal1:
         animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_1.png"));
         animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_2.png"));
@@ -33,7 +51,61 @@ Enemy::Enemy(int et) : GameObject(
         animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_3.png"));
         animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_4.png"));
         break;
-    case Big1:
+    case Normal2:
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_1.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_2.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_3.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_4.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_1.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_2.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_3.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_4.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_1.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_2.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_3.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_4.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_1.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_2.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_3.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_4.png"));
+        break;
+    case Normal3:
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_1.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_2.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_3.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_4.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_1.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_2.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_3.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_4.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_1.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_2.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_3.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_4.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_1.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_2.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_3.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_4.png"));
+        break;
+    case Normal4:
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_1.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_2.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_3.png"));
+        animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_4.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_1.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_2.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_3.png"));
+        animation[Down].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_4.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_1.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_2.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_3.png"));
+        animation[Left].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_LeftDown_4.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_1.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_2.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_3.png"));
+        animation[Right].push_back(QPixmap(":/Resources/Enemy&Objects/Enemy_RightUp_4.png"));
+        break;
+    case Big2:
         animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_1.png"));
         animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_2.png"));
         animation[Up].push_back(QPixmap(":/Resources/Enemy&Objects/BigEnemy_UL_3.png"));
@@ -309,9 +381,6 @@ void Enemy::move()
                     is_released = true;
                 }
             } else {
-                //if (posX == game->portal->getPosX() && posY == game->portal->getPosY() + 1) {
-                //    game->Enemy_Timer[enemyType]->setInterval(ENEMY_SPEED);
-                //}
                 Random_Direction();
             }
         }

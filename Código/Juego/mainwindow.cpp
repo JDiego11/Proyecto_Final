@@ -50,4 +50,3 @@ void MainWindow::keyPressEvent(QKeyEvent *k) {
         break;
     }
 }
-

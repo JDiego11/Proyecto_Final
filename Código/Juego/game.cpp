@@ -5,7 +5,7 @@
 
 #define W (GameObject::width)
 
-int ENEMY_RELEASE_TIME[] = {0, 200/*, 400, 600, 800, 1000*/};
+int ENEMY_RELEASE_TIME[] = {100, 400, 700, 1000, 1300, 1600};
 
 Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
     : QGraphicsScene(x, y, W * m_Width, W * m_Height)
@@ -60,11 +60,6 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 Bottle_Num++;
                 break;
             case 'E':
-                /*if (cont_Enemy == 0 || cont_Enemy == 5) {
-                    Enemy_i = 1;
-                } else {
-                    Enemy_i = 0;
-                }*/
                 map[i][j] = new GameObject(GameObject::Blank, BlankPix);
                 enemy[Enemy_i] = new Enemy(Enemy_i);
                 enemy[Enemy_i]->game = this;
@@ -74,7 +69,6 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
                 enemy[Enemy_i]->posY = i;
                 enemy[Enemy_i]->setPos(aux_x, aux_y);
                 addItem(enemy[Enemy_i]);
-                //cont_Enemy++;
                 Enemy_i++;
                 break;
             case 'M':
@@ -105,7 +99,11 @@ Game::Game(int x, int y, int m_Width, int m_Height, QString map_File)
     }
 
     enemy[Enemy::Normal1]->Chase = &Chase2;
+    enemy[Enemy::Normal2]->Chase = &Chase2;
+    enemy[Enemy::Normal3]->Chase = &Chase2;
+    enemy[Enemy::Normal4]->Chase = &Chase2;
     enemy[Enemy::Big1]->Chase = &Chase1;
+    enemy[Enemy::Big2]->Chase = &Chase1;
 }
 
 void Game::start()
@@ -114,11 +112,11 @@ void Game::start()
     connect(Morty_timer, SIGNAL(timeout()), this , SLOT(Morty_Movement()));
     Morty_timer->start(MORTY_SPEED);
 
-    /*for (int i = 0; i < Enemy::EnemyNum; i++) {
+    for (int i = 0; i < Enemy::EnemyNum; i++) {
         Enemy_Timer[i] = new QTimer(this);
         connect(Enemy_Timer[i], &QTimer::timeout, [=](){Enemy_Movement(i);});
         Enemy_Timer[i]->start(ENEMY_SPEED);
-    }*/
+    }
 }
 
 void Game::stop()

@@ -2,7 +2,7 @@ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 W-------W-------B--W---------W
 W--B----------------------B--W
 W-------W-B--------W---------W
-W-------WWWWWW-WWWWW---------W
+W-------WWWWWWMWWWWW---------W
 W-------W----------W---------W
 WW-WWWWWW--B-------W--B------W
 W-------W-----W----WWWWW-WWWWW
@@ -13,8 +13,8 @@ W-------W-----------BWWWWWW-WW
 WW-WWWWWW----WWWWWW-WW------BW
 W------W-----W-------W-------W
 W---------------B----W-------W
-W-B----W-----W-------W---M---W
+W-B----W-----W-------W-------W
 W------WWWPWWW---------------W
-WWWWWWWW-----WWWWWWWWW-------W
--------WE---EW-------W-------W
+WWWWWWWW-EEE-WWWWWWWWW-------W
+-------W-EEE-W-------W-------W
 -------WWWWWWW-------WWWWWWWWW

@@ -95,12 +95,14 @@ bool Morty::Collision(int i, int j)
 
 void Morty::Collect_Bottle(int _y, int _x)
 {
-    qDebug() << "Entró a la func";
     GameObject *bot = game->map[_y][_x];
     switch (bot->get_Type()) {
     case Bottle:
         game->score += bot->get_Bottle_Score();
         game->Bottle_Num--;
+
+        delete game->map[_y][_x];
+        game->map[_y][_x] = nullptr;
         break;
     default:
         break;
@@ -109,8 +111,7 @@ void Morty::Collect_Bottle(int _y, int _x)
     QPixmap BlankPix;
     game->map[posY][posX] = new GameObject(GameObject::Blank, BlankPix);
     game->map[_y][_x] = this;
-    delete bot;
-    qDebug() << "Sale de la func";
+    //delete bot;
 }
 
 void Morty::move()
@@ -219,48 +220,3 @@ void Morty::move()
         break;
     }
 }
-
-/*
-void Morty::Take_Damage(int damage)
-{
-    int NewHealth;
-    NewHealth = Health - (damage - (damage * Resistance / 100));
-
-    setHealth(NewHealth);
-}
-
-void Morty::Get_object(int, int)
-{
-
-}
-
-int Morty::getHealth() const
-{
-    return Health;
-}
-
-int Morty::getStrength() const
-{
-    return Strength;
-}
-
-int Morty::getResistance() const
-{
-    return Resistance;
-}
-
-void Morty::setHealth(int _Health)
-{
-    Health = _Health;
-}
-
-void Morty::setStrenght(int _Strength)
-{
-    Strength = _Strength;
-}
-
-void Morty::setResistance(int _Resistance)
-{
-    Resistance = _Resistance;
-}
-*/

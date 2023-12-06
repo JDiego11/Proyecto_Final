@@ -8,8 +8,8 @@
 class Enemy : public GameObject
 {
 public:
-    enum EnemyType {Big1 = 0, Normal1 = 1/*, Normal2 = 2, Normal3 = 3, Normal4 = 4, Big2 = 5*/};
-    const static int EnemyNum = 2;
+    enum EnemyType {Big1 = 0, Normal1 = 1, Normal2 = 2, Normal3 = 3, Normal4 = 4, Big2 = 5};
+    const static int EnemyNum = 6;
     Game *game;
 
     Enemy(int);
